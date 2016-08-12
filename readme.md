@@ -4,7 +4,7 @@ Set up an easy, versatile, responsive slider with images or any HTML content.  P
 
 ## Description
 
-The Versatile jQuery Slider helps you set up an easy, versatile, responsive slider with images or any HTML content.  Powered by [jQuery Cycle2](http://jquery.malsup.com/cycle2).
+The Versatile jQuery Slider is a WordPress plugin that helps you set up an easy, versatile, responsive slider with images or any HTML content.  Powered by [jQuery Cycle2](http://jquery.malsup.com/cycle2).
 
 I’ve often looked for a good plugin that would allow me to quickly and easily add the jQuery Cycle2 plugin to a site, but I couldn’t find any good ones… so I built this.  Basically, the Versatile jQuery Slider (VJS Slider) is a wrapper that pulls in most of the available options into a shortcode for easy use. So you’ll want to check out the [jQuery Cycle2 options](http://jquery.malsup.com/cycle2/api) to know what is available.
 
@@ -13,10 +13,10 @@ The nice part is, the jQuery Cycle2 scripts are only loaded on the pages that th
 Easy as that!
 
 
-### Demos =
+### Demos
 Check out the [demos page](http://elevaunt.com/plugins/versatile-jquery-slider/demos).
 
-### Parameters =
+### Parameters
 VJS Slider has some unique paramaters that jQuery Cycle2 doesn't have.  Also there are a some changes to a few of the jQuery Cycle2 parameters.  [Check them out](http://elevaunt.com/plugins/versatile-jquery-slider).
 
 
@@ -26,7 +26,7 @@ VJS Slider has some unique paramaters that jQuery Cycle2 doesn't have.  Also the
 1. Activate the plugin through the 'Plugins' screen in WordPress
 
 
-### Usage
+## Usage
 To use the VJS Slider, you'll use the shortcode `[[vjs_slider] your slide code here [/vjs_slider]]`, then you're all set for the basic, default usage.
 
 If you want to get fancy, follow along with the [jQuery Cycle2 demos](http://jquery.malsup.com/cycle2/demo), and wherever `data-cycle-attribute` is used, drop `data-cycle-` and all the rest is the same (in most cases).
@@ -34,7 +34,7 @@ If you want to get fancy, follow along with the [jQuery Cycle2 demos](http://jqu
 I'm not going to list out all the options here because they are all very well documented on the [jQuery Cycle2 site](http://jquery.malsup.com/cycle2).  Check it all out over there, then make some cool stuff with the VJS Slider!
 
 
-### Important Differences =
+## Important Differences
 There are a couple important changes that had to be made because they wouldn't work with the shortcode.  The following attributes are affected:
 
 * **slides**
@@ -50,7 +50,7 @@ This attribute is not used because it doesn't work reliably inside the shortcode
 * **swipe**
 Swipe is turned on and the necessary js added automatically because let's face it, who doesn't want that?
 
-### VJS Slider Specific Attributes =
+## VJS Slider Specific Attributes
 VJS Slider has a few attribute unique to the plugin that are designed to help you out.
 
  * **id**
@@ -87,15 +87,15 @@ By default, the slider container will expand the full width of it's parent conta
 
 ## Frequently Asked Questions
 
-### Where can I find detailed instructions =
+### Where can I find detailed instructions
 
 You can view the docs at the [Versatile jQuery Slider plugin homepage](http://elevaunt.com/plugins/versatile-jquery-slider).  There you'll find an overview of how to use the shortcode.  For details regarding all the available parameters, please see the [jQuery Cycle2 plugin options page](http://jquery.malsup.com/cycle2/api).
 
-### My HTML slides aren't working =
+### My HTML slides aren't working
 
 Make sure you've included the `slides` parameter and correctly set it's value to the element of each slide (e.g. `div` or `span`).  Also make sure you did not include `>`, the VJS Slider will take care of that part for you.
 
-### The slider looks like it works, but then it just breaks =
+### The slider looks like it works, but then it just breaks
 
 First double checked that you don't have any typos (missing quotes, etc).
 
