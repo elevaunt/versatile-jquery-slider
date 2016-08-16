@@ -157,7 +157,7 @@ function vjs_slider( $atts, $content = null ) {
   // Register the CSS and JavaScript only when the plugin is used
   vjs_register_scripts( $vjs_settings, $vjs_opts, $vjs_fix_dir, $vjs_fix );
 
-  // vjs_slider_cycle_check();
+  // Add slider initiation js
   vjs_slider_init_script( $vjs_opts_filter, $vjs_id, $vjs_settings );
     
   return $vjs_div;
@@ -212,7 +212,12 @@ function vjs_nav_setup( $vjs_settings, $vjs_opts ) {
       } else {
         $navSelector = 'id="'. str_replace( '#', '', $vjs_settings['nav-selector'] ) .'"';
       }
-      $vjs_div .= '<div '. $navSelector .' style="visibility: visible;">';
+      if ( $vjs_opts['slides'] == '> div' ) {
+        $vjs_div .= '<span ';
+      } else {
+        $vjs_div .= '<div ';
+      }
+      $vjs_div .= $navSelector .' style="visibility: visible;">';
     }
     
 
@@ -241,9 +246,13 @@ function vjs_nav_setup( $vjs_settings, $vjs_opts ) {
     }
     $vjs_div .= '<span '. $nextSelector .'>' . $vjs_settings['nav-next'] . '</span>';
 
-    // close up <div> if 
+    // close up nav element when needed
     if ( ! empty( $vjs_settings['nav-selector'] ) ) {
-      $vjs_div .= '</div>';
+      if ( $vjs_opts['slides'] == '> div' ) {
+        $vjs_div .= '</span>';
+      } else {
+        $vjs_div .= '</div>';
+      }
     }
   }
 
@@ -256,7 +265,6 @@ function vjs_slider_init_script( $vjs_opts_filter, $vjs_id, $vjs_settings ) {
   if ($vjs_settings['theme-fix']) {
     $vjs_fix = '2';
   }
-  // $vjs_slider_script = '';
   // initialize the vjs_slider for this specific slider
   $vjs_slider_script = 'jQuery(function($){';
   $vjs_slider_script .= 'jQuery("#' . $vjs_id . '").cycle' . $vjs_fix . '({ '. $vjs_opts_filter . ' });';
@@ -264,21 +272,6 @@ function vjs_slider_init_script( $vjs_opts_filter, $vjs_id, $vjs_settings ) {
 
   wp_add_inline_script( 'vjs.cycle2', $vjs_slider_script, 'before' );
 }
-
-// function vjs_slider_cycle_check() {
-//   $vjs_slider_cycle_check = '';
-//   // $vjs_slider_cycle_check = 'jQuery(function($){';
-//   // check if theme has already loaded the jquery.cycle plugin and log message
-//   // $vjs_slider_cycle_check .= 'setTimeout(function() {';
-//   $vjs_slider_cycle_check .= 'if(jQuery().cycle) {';
-//   $vjs_slider_cycle_check .= 'console.log("[vjs_slider] *** jquery.cycle plugin already loaded by theme! ***");';
-//   $vjs_slider_cycle_check .= 'console.log("[vjs_slider] *** Use the | theme-fix | attribute of the Versatile jQuery Slider plugin ***");';
-//   $vjs_slider_cycle_check .= '}';
-//   // $vjs_slider_cycle_check .= '}}, 100);';
-
-//   wp_add_inline_script( 'vjs.cycle2', $vjs_slider_cycle_check, 'before' );
-
-// }
 
 function vjs_register_scripts( $vjs_settings, $vjs_opts, $vjs_fix_dir, $vjs_fix ) {
 
@@ -326,18 +319,3 @@ function vjs_register_scripts( $vjs_settings, $vjs_opts, $vjs_fix_dir, $vjs_fix 
 }
 
 ?>
-
-<?php 
-/*
-
-Variations:
-
-slides: don't add the '>', it will automatically be assumed
-navs: If 'outside' and you're using the default CSS, you'll need to add your own CSS to make things look right
-next and prev selectors: Must add own CSS.  Note: if the navs are inside the slider container they will be hidden by default
-slide-css: not used because it didn't work reliably. If you want slide specific CSS, just add your own class to your slide and add your own CSS
-swipe: automatically added, because let's face it, who doesn't want that
-
-*/
-?>
-

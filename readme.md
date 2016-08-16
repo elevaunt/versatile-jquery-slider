@@ -70,10 +70,10 @@ This will enable next and prev navigation links. Set to `inside` for the links t
 ***Note:*** If set to `outside`, you'll need to add your own CSS to make things look right.
 
  * **nav-next**
-When **navs** are enabled, the default will create a right arrow link. Use this attribute to change it to something else. It will accept plain text, `img` tag, or any html.
+When **navs** are enabled, the default will create a right arrow link. Use this attribute to change it to something else. It will accept plain text, `img` tag, or any html. If you don't want an element inside (like you want to control it all with CSS), then just add `nav-next=""`.
 
  * **nav-prev**
-When **navs** are enabled, the default will create a left arrow link. Use this attribute to change it to something else. It will accept plain text, `img` tag, or any html.
+When **navs** are enabled, the default will create a left arrow link. Use this attribute to change it to something else. It will accept plain text, `img` tag, or any html. If you don't want an element inside (like you want to control it all with CSS), then just add `nav-prev=""`.
 
  * **nav-selector**
 Give the navigation wrapper a class or id so that you can style as you wish.
