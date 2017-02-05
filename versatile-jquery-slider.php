@@ -2,7 +2,7 @@
 /*
 Plugin Name: Versatile jQuery Slider
 Description: Set up an easy, versatile, responsive slider with images or any HTML content.  Powered by jQuery Cycle2.
-Version: 1.0
+Version: 1.1.2
 Author: Lee Porter
 Plugin URI:  http://www.elevaunt.com/plugins/versatile-jquery-slider
 Author URI:  http://www.elevaunt.com
@@ -28,7 +28,6 @@ You should have received a copy of the GNU General Public License
 along with Versatile jQuery Slider. If not, see {License URI}.
 
 */
-
 
 function vjs_slider( $atts, $content = null ) {
 
@@ -114,14 +113,25 @@ function vjs_slider( $atts, $content = null ) {
 
   ), $atts);
 
-  $vjs_id       = $vjs_settings['id'];
-  $vjs_fix      = '';
-  $vjs_fix_dir  = '';
+  $vjs_css_default  = '';
+  $vjs_id           = $vjs_settings['id'];
+  $vjs_fix          = '';
+  $vjs_fix_dir      = '';
+
+  // Give the slider a default class if CSS is included
+  if ( 'true' == $vjs_settings['css'] ) {
+    $vjs_css_default = ' vjs-slider-default';
+  }
+
+  // Set what element should be considered a slide
   if ( $vjs_opts['slides'] ) {
     $vjs_opts['slides'] = '> ' . $vjs_opts['slides'];
-  //   $vjs_id = str_replace('"', '', $vjs_id);
   }
-  // echo $vjs_settings['css'] == 'true';
+
+  // 0 timeout fix - needs to be 00 in order to work correctly
+  if ( $vjs_opts['timeout'] == 0) {
+    $vjs_opts['timeout'] = '00';
+  }
 
   // If user wants default navs, add in the defaults
   if ( $vjs_settings['navs'] ) {
@@ -135,8 +145,13 @@ function vjs_slider( $atts, $content = null ) {
 
 
   $vjs_opts_filter  = vjs_get_camel_case_opts_list($vjs_opts);
-
-  $vjs_div = '<div id="'. $vjs_settings['id'] .'" class="vjs-slider'. $vjs_settings['class'] .'"';
+  if ( $vjs_opts['slides'] == '> div' ) {
+    $vjsSlideType = ' vjs-slide-div';
+  } else {
+    $vjsSlideType = '';
+  }
+  // Setup slider container
+  $vjs_div = '<div id="'. $vjs_settings['id'] .'" class="vjs-slider '. $vjs_settings['class'] . $vjs_css_default . $vjsSlideType .'"';
   if ( $vjs_settings['width'] ) {
     $vjs_div .= ' style="width:'. $vjs_settings['width'] .';"';
   }
@@ -231,10 +246,20 @@ function vjs_nav_setup( $vjs_settings, $vjs_opts ) {
     } else {
       $prevSelector = 'class="cycle-prev"';
     }
-    $vjs_div .= '<span '. $prevSelector .'>' . $vjs_settings['nav-prev'] . '</span>';
+
+
+    if ( $vjs_opts['slides'] == '> div' ) {
+      $slideWrapperStart = '<p class="vjs-navs">';
+      $slideWrapperEnd = '</p>';
+    } else {
+      $slideWrapperStart = '';
+      $slideWrapperEnd = '';
+    }
+
+    $vjs_div .= $slideWrapperStart . '<span '. $prevSelector .'>' . $vjs_settings['nav-prev'] . '</span>';
 
     
-    if ( ! empty( $vjs_opts['prev'] ) ) {
+    if ( ! empty( $vjs_opts['next'] ) ) {
       // Add the user provided class for the 'next' link
       if ( strpos( $vjs_opts['next'], '.' ) !== false ) {
         $nextSelector = 'class="'. str_replace( '.', '', $vjs_opts['next'] ) .'"';
@@ -244,12 +269,12 @@ function vjs_nav_setup( $vjs_settings, $vjs_opts ) {
     } else {
       $nextSelector = 'class="cycle-next"';
     }
-    $vjs_div .= '<span '. $nextSelector .'>' . $vjs_settings['nav-next'] . '</span>';
+    $vjs_div .= '<span '. $nextSelector .'>' . $vjs_settings['nav-next'] . '</span>' . $slideWrapperEnd;
 
     // close up nav element when needed
     if ( ! empty( $vjs_settings['nav-selector'] ) ) {
       if ( $vjs_opts['slides'] == '> div' ) {
-        $vjs_div .= '</span>';
+        $vjs_div .= '</span></p>';
       } else {
         $vjs_div .= '</div>';
       }
@@ -279,10 +304,6 @@ function vjs_register_scripts( $vjs_settings, $vjs_opts, $vjs_fix_dir, $vjs_fix 
     $vjs_fix = '.vjs-mod';
     $vjs_fix_dir = '-vjs';
   }
-  /*
-  * Register some very basic CSS
-  */
-  if ( 'true' == $vjs_settings['css'] ) { wp_enqueue_style( 'vjs-css',  plugins_url( '/css/vjs-slider.css', __FILE__ ) ); }
 
   /*
    * Register the jquery.cycle2 script
@@ -317,5 +338,19 @@ function vjs_register_scripts( $vjs_settings, $vjs_opts, $vjs_fix_dir, $vjs_fix 
   // ie fade script
   if ( $vjs_settings['ie-fade'] ) { wp_enqueue_script( 'vjs.cycle2.ie-fade',  plugins_url( '/js/cycle2' . $vjs_fix_dir . '/jquery.cycle2' . $vjs_fix . '.ie-fade.min.js', __FILE__ ), 'cycle2', null, true ); }
 }
+
+
+/*
+* Register some very basic CSS
+* only when shortcode is used
+*/
+function vjs_load_slider_css() {
+  global $post;
+  if ( has_shortcode( $post->post_content, 'vjs_slider') ) {
+    wp_enqueue_style( 'vjs-css',  plugins_url( '/css/vjs-slider.css', __FILE__ ) );
+  }
+}
+add_action( 'wp_enqueue_scripts', 'vjs_load_slider_css' );
+
 
 ?>

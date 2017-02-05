@@ -1,10 +1,19 @@
-.vjs-slider > * { display: none }
-.vjs-slider > * + .cycle-sentinal { display: block }
+.vjs-slider-default > * { display: none }
 
-.cycle-prev,
-.cycle-next {
+.vjs-slide-div .vjs-navs {
+	display: block;
+	margin: 0;
+}
+
+.vjs-slider-default .cycle-prev,
+.vjs-slider-default .cycle-next {
 	width: 50px;
 	height: 50px;
+	top: 50%;
+	opacity: 0;
+	margin-top: -25px;
+	position: absolute;
+	z-index: 0;
 	border-radius: 50px;
 	background: #666;
 	background: rgba(0,0,0,0.3);
@@ -16,29 +25,23 @@
   -o-transition: all 0.25s ease;
   transition: all 0.25s ease;
 }
-.vjs-slider .cycle-prev,
-.vjs-slider .cycle-next {
-	top: 50%;
-	opacity: 0;
-	position: absolute;
-	margin-top: -25px;
-	z-index: 0;
-}
-.vjs-slider .cycle-prev:hover,
-.vjs-slider .cycle-next:hover {
-	background: #333;
-	background: rgba(0,0,0,0.5);
-}
-.cycle-prev {
+.vjs-slider-default .cycle-prev {
 	left: 10px;
 	padding: 5px 7px 5px 3px;
 }
-.cycle-next {
+.vjs-slider-default .cycle-next {
 	right: 10px;
 	padding: 5px 3px 5px 7px;
 }
-.vjs-slider:hover .cycle-prev,
-.vjs-slider:hover .cycle-next {
+
+.vjs-slider-default .cycle-prev:hover,
+.vjs-slider-default .cycle-next:hover {
+	background: #333;
+	background: rgba(0,0,0,0.5);
+}
+
+.vjs-slider-default:hover .cycle-prev,
+.vjs-slider-default:hover .cycle-next {
 	opacity: 1;
 	z-index: 200;
 }

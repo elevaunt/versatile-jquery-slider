@@ -1,11 +1,11 @@
 === Versitile jQuery Slider ===
 Contributors: elevaunt
-Tags: slider, slideshow, jquery slider, jquery slideshow, responsive slider, responsive slideshow	
+Tags: slider, slideshow, jquery slider, jquery slideshow, responsive slider, responsive slideshow 
 Author URI: http://www.elevaunt.com
 Plugin URI: http://www.elevaunt.com/plugins/versatile-jquery-slider/
 Requires at least: 3.0.1
 Tested up to: 4.5.3
-Stable tag: 1.0
+Stable tag: 1.1.2
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -116,6 +116,13 @@ If you're still having problems, there's a chance that your theme includes a ver
 None yet.  Will add soon.
 
 == Changelog ==
+
+= 1.1.2 (2017-02-04): =
+* Bug fixes:
+  * Moved CSS to <head>, only when shortcode is used for better override capabilities
+  * Fixed bug when timeout='0'
+  * Fixed custom class name issue
+  * Fixed display issue when slides are divs
 
 = 1.0 (2016-08-11): =
 * Initial Release
