@@ -2,7 +2,7 @@
 /*
 Plugin Name: Versatile jQuery Slider
 Description: Set up an easy, versatile, responsive slider with images or any HTML content.  Powered by jQuery Cycle2.
-Version: 1.1.2
+Version: 1.1.3
 Author: Lee Porter
 Plugin URI:  http://www.elevaunt.com/plugins/versatile-jquery-slider
 Author URI:  http://www.elevaunt.com
@@ -129,7 +129,7 @@ function vjs_slider( $atts, $content = null ) {
   }
 
   // 0 timeout fix - needs to be 00 in order to work correctly
-  if ( $vjs_opts['timeout'] == 0) {
+  if ( $vjs_opts['timeout'] == '0') {
     $vjs_opts['timeout'] = '00';
   }
 

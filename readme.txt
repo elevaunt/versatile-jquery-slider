@@ -5,7 +5,7 @@ Author URI: http://www.elevaunt.com
 Plugin URI: http://www.elevaunt.com/plugins/versatile-jquery-slider/
 Requires at least: 3.0.1
 Tested up to: 4.5.3
-Stable tag: 1.1.2
+Stable tag: 1.1.3
 License: GPLv3
 License URI: http://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -36,7 +36,7 @@ VJS Slider has some unique paramaters that jQuery Cycle2 doesn't have.  Also the
 
 
 = Usage = 
-To use the VJS Slider, you'll use the shortcode `[[vjs_slider] your slide code here [/vjs_slider]]`, then you're all set for the basic, default usage.
+To use the VJS Slider, you'll use the shortcode `[vjs_slider] your slide code here [/vjs_slider]`, then you're all set for the basic, default usage.
 
 If you want to get fancy, follow along with the [jQuery Cycle2 demos](http://jquery.malsup.com/cycle2/demo), and wherever `data-cycle-attribute` is used, drop `data-cycle-` and all the rest is the same (in most cases).
 
@@ -116,6 +116,10 @@ If you're still having problems, there's a chance that your theme includes a ver
 None yet.  Will add soon.
 
 == Changelog ==
+
+= 1.1.3 (2017-02-09): =
+* Bug fix:
+  * Fixed bug when timeout='0' - for reals this time.  The last "fix" made timeout='0' regardless of what was entered.
 
 = 1.1.2 (2017-02-04): =
 * Bug fixes:
